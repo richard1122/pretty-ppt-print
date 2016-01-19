@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Print</title>
+    <script src="https://code.jquery.com/jquery-2.2.0.js"></script>
+    <style>
+        .ppt{
+            width: 49.5%;
+            float: left;
+            margin-top: 5px;
+            margin-bottom: 5px;;
+            height: auto;
+            border: 2px solid;
+            box-sizing: border-box;
+        }
+        .ppt:nth-of-type(6n) {
+            page-break-after: always;
+            break-after: always;
+        }
+        .ppt:nth-of-type(2n+1) {
+            margin-right: 1%;
+        }
+    </style>
+</head>
+<body>
+    <div id="content"></div>
+    <script>
+        $(document).ready(function () {
+            console.log(window.location.search);
+            var kv = window.location.search.substring(1);
+            kv = kv.split('&').reduce(function(obj, val, index) {
+                var v = val.split('=');
+                obj[decodeURIComponent(v[0])] = decodeURIComponent(v[1]);
+                return obj;
+            }, {});
+            console.log(kv);
+            var div = $("#content");
+            for (var i = 1; i <= parseInt(kv.count); ++i) {
+                div.append('<img src="' + kv.prefix + i + kv.suffix + '" class="ppt"/>');
+            }
+        });
+    </script>
+</body>
+</html>

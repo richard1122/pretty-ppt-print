@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Pretty-ppt-print</title>
+    <script src="https://code.jquery.com/jquery-2.2.0.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
+</head>
+<body>
+    <div class="row">
+        <form class="col s12" id="form">
+            <div class="row">
+                <div class="input-field col s12">
+                    <input placeholder="PPT prefix" id="prefix" type="text" name="prefix">
+                    <label for="prefix">PPT prefix with http(s)://</label>
+                </div>
+                <div class="input-field col s12">
+                    <input placeholder="PPT suffix" id="suffix" type="text" name="suffix">
+                    <label for="suffix">PPT suffix, eg: .jpg</label>
+                </div>
+                <div class="input-filed col s12">
+                    <input type="number" id="count" placeholder="PPT count" name="count">
+                    <label for="count">PPT total count.</label>
+                </div>
+                <div class="input-field col s12">
+                    <input type="submit" class="waves-effect waves-light btn" value="Submit">
+                </div>
+            </div>
+        </form>
+    </div>
+    <script>
+        $(document).ready(function () {
+            $('#form').submit(function (e) {
+                e.preventDefault();
+                console.log($('#form').serialize());
+                window.open('print.html?' + $("#form").serialize(), '', "width=500, height=500");
+            });
+        });
+    </script>
+</body>
+</html>
